@@ -28,6 +28,8 @@ validation_path = img_utils.validation_output_path
 path_X = img_utils.output_path + "X/"
 path_Y = img_utils.output_path + "y/"
 
+scaling_factor = 4
+
 def PSNRLoss(y_true, y_pred):
     """
     PSNR is Peek Signal to Noise Ratio, which is similar to mean squared error.
@@ -487,12 +489,14 @@ class ImageSuperResolutionModel(BaseSuperResolutionModel):
         self.f2 = 1
         self.f3 = 5
 
-        self.n1 = 128
-        self.n2 = 64
+        global scaling_factor
+
+        self.n1 = 32 * scaling_factor
+        self.n2 = 16 * scaling_factor
 
         self.weight_path = "weights/SR Weights %dX.h5" % (self.scale_factor)
 
-    def create_model(self, height=128, width=128, channels=3, load_weights=False, batch_size=128):
+    def create_model(self, height=32 * scaling_factor, width=32 * scaling_factor, channels=3, load_weights=False, batch_size=128):
         """
             Creates a model to be used to scale images of specific height and width.
         """
