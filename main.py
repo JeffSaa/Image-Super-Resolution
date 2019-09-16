@@ -9,7 +9,7 @@ parser.add_argument("--model", type=str, default="distilled_rnsr", help="Use eit
                         "deep denoising sr (ddsr) or res net sr (rnsr)")
 parser.add_argument("--scale", default=2, help='Scaling factor. Default = 2x')
 parser.add_argument("--mode", default="patch", type=str, help='Mode of operation. Choices are "fast" or "patch"')
-parser.add_argument("--save_intermediate", dest='save', default='True', type=str,
+parser.add_argument("--save_intermediate", dest='save', default='False', type=str,
                         help="Whether to save bilinear upscaled image")
 parser.add_argument("--suffix", default="scaled", type=str, help='Suffix of saved image')
 parser.add_argument("--patch_size", type=int, default=8, help='Patch Size')

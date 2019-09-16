@@ -487,12 +487,12 @@ class ImageSuperResolutionModel(BaseSuperResolutionModel):
         self.f2 = 1
         self.f3 = 5
 
-        self.n1 = 64
-        self.n2 = 32
+        self.n1 = 128
+        self.n2 = 64
 
         self.weight_path = "weights/SR Weights %dX.h5" % (self.scale_factor)
 
-    def create_model(self, height=32, width=32, channels=3, load_weights=False, batch_size=128):
+    def create_model(self, height=128, width=128, channels=3, load_weights=False, batch_size=128):
         """
             Creates a model to be used to scale images of specific height and width.
         """

@@ -18,8 +18,8 @@ which not offer adequate training samples.
 '''
 _image_scale_multiplier = 1
 
-img_size = 128 * _image_scale_multiplier
-stride = 64 * _image_scale_multiplier
+img_size = 256 * _image_scale_multiplier
+stride = 128 * _image_scale_multiplier
 
 assert (img_size ** 2) % (stride ** 2) == 0, "Number of images generated from strided subsample of the image needs to be \n" \
                                              "a positive integer. Change stride such that : \n" \
@@ -151,8 +151,8 @@ def transform_images_temp(directory, output_directory, scaling_factor=2, max_nb_
         img = imresize(img, (img_size, img_size))
 
         # Create patches
-        hr_patch_size = 64
-        lr_patch_size = 32
+        hr_patch_size = 128
+        lr_patch_size = 64
         nb_hr_images = (img_size ** 2) // (stride ** 2)
 
         hr_samples = np.empty((nb_hr_images, hr_patch_size, hr_patch_size, 3))
@@ -361,15 +361,17 @@ if __name__ == "__main__":
     # Transform the images once, then run the main code to scale images
 
     # Change scaling factor to increase the scaling factor
-    scaling_factor = 2
+    scaling_factor = 4
 
     # Set true_upscale to True to generate smaller training images that will then be true upscaled.
     # Leave as false to create same size input and output images
-    true_upscale = True
+    true_upscale = False
 
     # transform_images_temp(input_path, output_path, scaling_factor=scaling_factor, max_nb_images=-1,
     #                  true_upscale=true_upscale)
     transform_images_temp(validation_set5_path, validation_output_path, scaling_factor=scaling_factor, max_nb_images=-1,
+                     true_upscale=true_upscale)
+    transform_images_temp(validation_set5_path, output_path, scaling_factor=scaling_factor, max_nb_images=-1,
                      true_upscale=true_upscale)
     # transform_images_temp(validation_set14_path, validation_output_path, scaling_factor=scaling_factor, max_nb_images=-1,
     #                       true_upscale=true_upscale)

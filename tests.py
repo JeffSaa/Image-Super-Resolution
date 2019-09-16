@@ -8,14 +8,14 @@ if __name__ == "__main__":
     path = r"headline_carspeed.jpg"
     val_path = "val_images/"
 
-    scale = 2
+    scale = 4
 
     """
     Plot the models
     """
 
-    # model = models.ImageSuperResolutionModel(scale).create_model()
-    # plot_model(model, to_file="architectures/SRCNN.png", show_shapes=True, show_layer_names=True)
+    model = models.ImageSuperResolutionModel(scale).create_model()
+    plot_model(model, to_file="architectures/SRCNN.png", show_shapes=True, show_layer_names=True)
 
     # model = models.ExpantionSuperResolution(scale).create_model()
     # plot_model(model, to_file="architectures/ESRCNN.png", show_layer_names=True, show_shapes=True)
@@ -42,9 +42,9 @@ if __name__ == "__main__":
     Train Super Resolution
     """
 
-    # sr = models.ImageSuperResolutionModel(scale)
-    # sr.create_model()
-    # sr.fit(nb_epochs=250)
+    sr = models.ImageSuperResolutionModel(scale)
+    sr.create_model()
+    sr.fit(nb_epochs=150)
 
     """
     Train ExpantionSuperResolution
@@ -106,8 +106,8 @@ if __name__ == "__main__":
     Evaluate Super Resolution on Set5/14
     """
 
-    # sr = models.ImageSuperResolutionModel(scale)
-    # sr.evaluate(val_path)
+    sr = models.ImageSuperResolutionModel(scale)
+    sr.evaluate(val_path)
 
     """
     Evaluate ESRCNN on Set5/14
